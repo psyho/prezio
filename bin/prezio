@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/prezio'
+
+require 'commander/import'
+
+program :name, 'Prezio'
+program :version, Prezio::VERSION
+program :description, 'HTML5 presentation generator'
+
+command :convert do |c|
+  c.syntax = 'prezio convert <input.html> <output.html>'
+  c.description = 'Transforms input.html into output.html'
+
+  c.action do |args, options|
+    if args.size != 2
+      say_error "convert takes exactly 2 arguments!"
+      exit(1)
+    end
+
+    Prezio.convert(args[0], args[1])
+
+    say "Converted."
+  end
+end

@@ -14,4 +14,11 @@ Gem::Specification.new do |gem|
   gem.name          = "prezio"
   gem.require_paths = ["lib"]
   gem.version       = Prezio::VERSION
+
+  gem.add_dependency 'sinatra'
+  gem.add_dependency 'commander'
+  gem.add_dependency 'pygments.rb'
+  gem.add_dependency 'nokogiri'
+
+  gem.add_development_dependency 'rspec'
 end
