@@ -23,7 +23,9 @@ describe "prezio convert <template> <presentation>" do
     content.should include("{{{{ dzslides core")
   end
 
-  it "converts code snippets"
+  it "converts code snippets" do
+    content.should include('class="highlight"')
+  end
 
   it "returns status code 0" do
     @status.should be_true
