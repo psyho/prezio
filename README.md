@@ -16,7 +16,7 @@ Prezio converts simple html files into presentations.
 
 The HTML file should look like this:
 
-"""html
+```html
 <title>The Title Of Your Presentation</title>
 
 <!-- One section is one slide -->
@@ -38,7 +38,7 @@ The HTML file should look like this:
   end
   </code>
 </section>
-"""
+```
 
 Convert the template to presentation using the following command:
 
