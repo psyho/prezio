@@ -44,5 +44,9 @@ Convert the template to presentation using the following command:
 
     $ prezio convert template.html presentation.html
 
+While you are developing the presentation, it might be useful to run prezio in preview mode:
+
+    $ prezio preview template.html
+
 [dzslides]: https://github.com/paulrouget/dzslides
 [pygments]: https://github.com/tmm1/pygments.rb/
