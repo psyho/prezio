@@ -44,5 +44,7 @@ command :preview do |c|
       Prezio.convert(template, out_file)
       File.read(out_file)
     end
+
+    Sinatra::Application.run!
   end
 end
