@@ -31,7 +31,6 @@ describe Prezio::SyntaxHighlighter do
 
   it "highlighs all the code sections" do
     result.should include('class="highlight"')
-    result.should_not include('code')
     result.should include('hello ruby')
     result.should include('hello python')
   end

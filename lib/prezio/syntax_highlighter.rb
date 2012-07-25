@@ -29,12 +29,27 @@ module Prezio
     end
 
     def add_highliting_styles(doc)
-      html = "<style>#{Pygments.css('.highlight')}</style>"
+      styles_file = File.expand_path("../octopress/highlight.html", __FILE__)
+      html = File.read(styles_file)
       doc.add_child(html)
     end
 
     def highlight(node)
-      Pygments.highlight(node.inner_html.to_s, lexer: node['lang'])
+      text = node.inner_html.to_s
+      code = Pygments.highlight(text, lexer: node['lang'])
+      code = code.match(/<pre>(.*)<\/pre>/m)[1].to_s.gsub(/\s*\Z/, '')
+      tableize_code(code, node['lang'])
+    end
+
+    # taken from octopress
+    def tableize_code (str, lang = '')
+      table = '<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers">'
+      code = ''
+      str.lines.each_with_index do |line,index|
+        table += "<span class='line-number'>#{index+1}</span>\n"
+        code  += "<span class='line'>#{line}</span>"
+      end
+      table += "</pre></td><td class='code'><pre><code class='#{lang}'>#{code}</code></pre></td></tr></table></div>"
     end
   end
 end

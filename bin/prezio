@@ -23,3 +23,26 @@ command :convert do |c|
     say "Converted."
   end
 end
+
+command :preview do |c|
+  c.syntax = 'prezio preview <input.html>'
+  c.description = 'Starts a server that transforms input.html on each request'
+
+  c.action do |args, options|
+    if args.size != 1
+      say_error "convert takes exactly 1 argument!"
+      exit(1)
+    end
+
+    require 'sinatra'
+    require 'tempfile'
+
+    template = args[0]
+    out_file = Tempfile.new(File.basename(template)).path
+
+    get "/" do
+      Prezio.convert(template, out_file)
+      File.read(out_file)
+    end
+  end
+end
