@@ -40,6 +40,8 @@ command :preview do |c|
     template = args[0]
     out_file = Tempfile.new(File.basename(template)).path
 
+    set :public_folder, File.dirname(template)
+
     get "/" do
       Prezio.convert(template, out_file)
       File.read(out_file)
