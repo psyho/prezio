@@ -23,8 +23,8 @@ module Prezio
     private
 
     def replace_code_tags(doc)
-      doc.css("code").each do |node|
-        node.replace(highlight(node))
+      doc.css("script").each do |node|
+        node.replace(highlight(node)) if node['lang']
       end
     end
 

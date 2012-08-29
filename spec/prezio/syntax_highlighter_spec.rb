@@ -4,19 +4,21 @@ describe Prezio::SyntaxHighlighter do
   HTML = <<-HTML
   <section>welcome</section>
 
+  <script type="text/javascript">alert('hello');</script>
+
   <section>
-    <code lang="ruby">
+    <script lang="ruby">
       def hello
         puts "hello ruby"
       end
-    </code>
+    </script>
   </section>
 
   <section>
-    <code lang="python">
+    <script lang="python">
       def hello():
         print "hello python"
-    </code>
+    </script>
   </section>
 
   <section>goodbye</section>
@@ -33,6 +35,10 @@ describe Prezio::SyntaxHighlighter do
     result.should include('class="highlight"')
     result.should include('hello ruby')
     result.should include('hello python')
+  end
+
+  it "does not replace regular script tags" do
+    result.should include(%q{<script type="text/javascript">alert('hello');</script>})
   end
 
   it "does not add body/html tags to content" do
